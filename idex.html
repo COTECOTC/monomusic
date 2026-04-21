@@ -1,0 +1,316 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>monomusic | Mentes unidas por el ritmo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark: #0A0A0A;
+            --peach: #FF8C69;
+            --teal: #1A2E2C;
+            --gold: #C9A44C;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Capa de grano para textura orgánica */
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 50;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            mix-blend-mode: overlay;
+        }
+
+        /* Animación de letras interactivas corregida */
+        .interactive-title {
+            display: flex;
+            flex-wrap: wrap;
+            line-height: 0.9;
+        }
+
+        .interactive-title span {
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), color 0.4s ease;
+            cursor: default;
+            white-space: pre; 
+        }
+
+        .interactive-title span:hover {
+            color: var(--peach);
+            transform: translateY(-10px) rotate(3deg) scale(1.1);
+            z-index: 10;
+        }
+
+        .bg-peach { background-color: var(--peach); }
+        .text-peach { color: var(--peach); }
+        .text-gold { color: var(--gold); }
+
+        .gradient-glow {
+            background: radial-gradient(circle, var(--peach) 0%, transparent 70%);
+        }
+
+        /* Efecto para el flyer */
+        .flyer-overlay {
+            background: linear-gradient(to bottom right, rgba(255,140,105,0.3), rgba(26,46,44,0.7));
+            mix-blend-mode: multiply;
+        }
+
+        /* Estilo para el contador */
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px border rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-[#0A0A0A]">
+
+    <div class="noise"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-40 p-6 md:p-8 flex justify-between items-center mix-blend-difference">
+        <div class="text-xl md:text-2xl font-black uppercase tracking-tighter cursor-pointer group">
+            <span class="group-hover:text-peach transition-colors">mono</span><span class="text-gold">music</span>
+        </div>
+        <div class="flex items-center gap-4 md:gap-8">
+            <a href="#eventos" class="text-[10px] md:text-xs font-bold tracking-widest hover:text-peach transition-colors hidden sm:block uppercase">PRÓXIMOS</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex flex-col justify-center px-6 md:px-20 pt-20 overflow-hidden">
+        <div class="max-w-6xl z-10">
+            <p class="text-peach font-bold text-[10px] md:text-xs uppercase tracking-[0.5em] mb-6 animate-pulse">
+                VALENCIA • 2026 • CULTURA HOUSE
+            </p>
+            
+            <div id="hero-1" class="interactive-title text-[14vw] sm:text-[10vw] md:text-[8vw] font-black mb-2">LA MÚSICA</div>
+            <div id="hero-2" class="interactive-title text-[14vw] sm:text-[10vw] md:text-[8vw] font-black italic md:-mt-6">NOS UNE A TODOS.</div>
+            
+            <p class="mt-8 md:mt-12 text-lg md:text-2xl text-white/60 max-w-2xl font-light leading-relaxed">
+                Hemos creado un refugio donde el ritmo no conoce fronteras. Una comunidad unida por el sonido, la energía y el diseño. <span class="text-white font-medium">Vive la frecuencia.</span>
+            </p>
+            
+            <div class="mt-10 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8">
+                <!-- ÚNICO CTA PERMITIDO: PEGA TU ENLACE DE FORMULARIO EN 'href' -->
+                <a href="#" target="_blank" class="w-full sm:w-auto bg-peach text-black px-10 md:px-12 py-5 md:py-6 rounded-full font-black text-lg md:text-xl hover:shadow-[0_0_40px_rgba(255,140,105,0.4)] transition-all text-center">
+                    ÚNETE A LA LISTA EXCLUSIVA
+                </a>
+                <div class="flex flex-col border-l border-white/10 pl-6">
+                    <span class="text-[10px] md:text-xs font-bold opacity-40 uppercase tracking-widest">Comunidad Global</span>
+                    <span class="text-xl md:text-2xl font-bold">+500 mentes conectadas</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute top-1/4 -right-1/4 w-[80vw] h-[80vw] rounded-full blur-[120px] opacity-10 pointer-events-none gradient-glow"></div>
+    </section>
+
+    <!-- SECCIÓN EVENTOS (DJ WALDO) + CONTADOR -->
+    <section id="eventos" class="py-24 md:py-32 px-6 md:px-20 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+                
+                <!-- FLYER -->
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-peach opacity-10 blur-3xl group-hover:opacity-20 transition-opacity"></div>
+                    <div class="relative bg-white/5 backdrop-blur-sm p-3 md:p-4 rounded-[30px] md:rounded-[40px] border border-white/10 shadow-2xl overflow-hidden transform transition-all duration-700 hover:scale-[1.01]">
+                        <div class="relative aspect-[3/4] rounded-[24px] md:rounded-[30px] overflow-hidden bg-zinc-900">
+                            <!-- [Imagen de Evento de DJ Waldo] -->
+                            <img src="https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?q=80&w=1000&auto=format&fit=crop" 
+                                 class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000">
+                            <div class="absolute inset-0 flyer-overlay transition-opacity hover:opacity-50"></div>
+                            
+                            <div class="absolute inset-0 p-6 md:p-10 flex flex-col justify-end">
+                                <span class="text-white/60 text-[10px] md:text-xs font-black uppercase tracking-widest mb-3 md:mb-4">Evento Destacado</span>
+                                <h4 class="text-4xl md:text-5xl font-black leading-none mb-2">AFRO HOUSE<br>MIX</h4>
+                                <p class="text-peach font-black text-lg md:text-xl uppercase italic">Veneno House Concept • Valencia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8 md:space-y-10">
+                    <div id="set-title" class="interactive-title text-5xl md:text-7xl font-black leading-none tracking-tighter">
+                        DJ WALDO <br> <span class="text-white/20">LIVE SET</span>
+                    </div>
+                    
+                    <!-- CONTADOR DE TIEMPO (COUNTDOWN) -->
+                    <div class="grid grid-cols-4 gap-2 md:gap-4 py-4">
+                        <div class="countdown-item p-4 rounded-2xl text-center">
+                            <span id="days" class="block text-2xl md:text-3xl font-black text-peach">00</span>
+                            <span class="text-[8px] md:text-[10px] uppercase font-bold opacity-40">Días</span>
+                        </div>
+                        <div class="countdown-item p-4 rounded-2xl text-center">
+                            <span id="hours" class="block text-2xl md:text-3xl font-black">00</span>
+                            <span class="text-[8px] md:text-[10px] uppercase font-bold opacity-40">Horas</span>
+                        </div>
+                        <div class="countdown-item p-4 rounded-2xl text-center">
+                            <span id="minutes" class="block text-2xl md:text-3xl font-black">00</span>
+                            <span class="text-[8px] md:text-[10px] uppercase font-bold opacity-40">Min</span>
+                        </div>
+                        <div class="countdown-item p-4 rounded-2xl text-center">
+                            <span id="seconds" class="block text-2xl md:text-3xl font-black opacity-50">00</span>
+                            <span class="text-[8px] md:text-[10px] uppercase font-bold opacity-40">Seg</span>
+                        </div>
+                    </div>
+
+                    <p class="text-lg md:text-xl text-white/50 leading-relaxed">
+                        El ritmo de DJ Waldo llega para transformar Veneno House Concept en un epicentro de vibras envolventes. Una noche donde los sonidos del Afro House se fusionan con la esencia pura.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 md:gap-8 border-t border-white/10 pt-8 md:pt-10">
+                        <div>
+                            <span class="text-[10px] md:text-xs font-bold opacity-30 uppercase tracking-widest block mb-2">Horario</span>
+                            <span class="text-xl md:text-2xl font-black text-peach">Jueves 23 Abril • 20:00</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] md:text-xs font-bold opacity-30 uppercase tracking-widest block mb-2">Ubicación</span>
+                            <span class="text-xl md:text-2xl font-black">Veneno House Concept</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN UBICACIÓN (MAPA) -->
+    <section class="py-24 px-6 md:px-20 bg-zinc-900/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h4 class="text-4xl md:text-6xl font-black tracking-tighter">EL SPOT.</h4>
+                    <p class="text-xl text-white/60 leading-relaxed">
+                        Veneno House Concept es el escenario elegido. Un espacio donde la acústica y la estética se encuentran para ofrecer una experiencia íntima.
+                    </p>
+                    <div class="flex items-center gap-4 text-peach">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span class="font-bold text-lg">Carrer de la Pau, Valencia</span>
+                    </div>
+                </div>
+                <div class="rounded-[40px] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl h-[400px]">
+                    <!-- [Mapa de Valencia] -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079.8054707119!2d-0.3752!3d39.473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6048b26d36e2f5%3A0x8f3c7e3f8a6b2b!2sValencia!5e0!3m2!1ses!2ses!4v1713690000000!5m2!1ses!2ses" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MANIFIESTO -->
+    <section class="py-24 md:py-32 px-6 md:px-20 bg-white text-black rounded-[40px] md:rounded-[100px] mx-4 my-10 relative overflow-hidden">
+        <div class="max-w-4xl relative z-10">
+            <h4 class="text-5xl md:text-8xl font-black tracking-tighter mb-8 md:mb-12">
+                NO SOMOS <br> UNA AGENCIA <br> DE EVENTOS.
+            </h4>
+            <p class="text-xl md:text-4xl font-light leading-snug">
+                Somos arquitectos de momentos. Curamos el sonido más nítido y seleccionamos los espacios con más alma. Si estás aquí, es porque buscas pertenecer a algo real.
+            </p>
+        </div>
+        <div class="absolute -bottom-10 md:-bottom-20 -right-10 md:-right-20 text-[25vw] font-black opacity-[0.03] select-none pointer-events-none">HOUSE</div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto space-y-12">
+            <div class="flex flex-col items-center gap-8">
+                <!-- Segundo punto de acceso al único CTA -->
+                <a href="#" target="_blank" class="bg-peach text-black px-10 py-5 rounded-full font-black text-lg hover:shadow-[0_0_40px_rgba(255,140,105,0.4)] transition-all">
+                    ÚNETE A LA LISTA EXCLUSIVA
+                </a>
+                <div class="flex justify-center gap-12 mt-4">
+                    <a href="https://instagram.com/monomus1c" target="_blank" class="text-lg md:text-2xl hover:text-peach transition-transform hover:scale-110 font-black uppercase tracking-widest">
+                        INSTAGRAM
+                    </a>
+                </div>
+            </div>
+            <div class="h-px w-full bg-white/10"></div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.5em] opacity-30">
+                <span>Valencia, España</span>
+                <span>monomusic © 2026</span>
+                <span>Bespoke Experiences</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Función para romper el texto sin romper el layout
+        function splitText(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const text = el.innerText;
+            el.innerHTML = '';
+            
+            const words = text.split(' ');
+            words.forEach((word, wordIdx) => {
+                const wordSpan = document.createElement('div');
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.whiteSpace = 'nowrap';
+                
+                word.split('').forEach(char => {
+                    const span = document.createElement('span');
+                    span.innerText = char;
+                    wordSpan.appendChild(span);
+                });
+
+                el.appendChild(wordSpan);
+                
+                if (wordIdx < words.length - 1) {
+                    const space = document.createElement('span');
+                    space.innerText = ' ';
+                    el.appendChild(space);
+                }
+            });
+        }
+
+        // Lógica del Contador (Countdown)
+        function updateCountdown() {
+            // Fecha actualizada: Jueves 23 de abril, 2026 a las 20:00 (8:00 PM)
+            const eventDate = new Date('April 23, 2026 20:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Si el contador llega a cero o es negativo
+            if (distance < 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+        }
+
+        window.onload = () => {
+            ['hero-1', 'hero-2', 'set-title'].forEach(splitText);
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        };
+    </script>
+</body>
+</html>
